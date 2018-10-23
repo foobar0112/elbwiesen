@@ -14,13 +14,8 @@ html {
 body {
   font-size: 1.6rem;
   font-family: monospace;
-  color: #222222;
+  color: #222;
   background-color: white;
-}
-
-a {
-  color: white;
-  text-decoration: none;
 }
 
 h1 {
@@ -28,6 +23,18 @@ h1 {
   line-height: 1.5;
   margin: 2rem 0 5rem 0;
   text-align: center;
+}
+
+button {
+  padding: 0.4em 0.8em;
+  border: 1px #aaa solid;
+  background-color: white;
+  font-family: monospace;
+  font-size: 0.99rem;
+  color: #aaa;
+}
+button:hover {
+  background-color: #ddd;
 }
 
 /* -------------------------------- 
@@ -38,16 +45,6 @@ Main Components
 #player {
   text-align: center;
   margin: 2rem;
-}
-
-button {
-  border: 1px #aaa solid;
-  background-color: white;
-  padding: 0.4em 0.8em;
-  font-family: monospace;
-}
-button :hover {
-  background-color: #aaa;
 }
 
 #poem-container {
@@ -67,6 +64,11 @@ button :hover {
 .word {
   display: inline-block;
   margin-right: 0.5em;
+  transition: text-shadow 3000ms linear;
+}
+
+.word_shadow {
+  text-shadow: 8px 8px 8px #999;
 }
 
 /*# sourceMappingURL=style.css.map */

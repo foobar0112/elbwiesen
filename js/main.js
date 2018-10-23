@@ -74,6 +74,8 @@ jQuery(document).ready(function ($) {
 });
 
 function changeOrder() {
+    $('.word').addClass('word_shadow');
+
     let side = $('#left-side');
     let baseX = 50;
 
@@ -87,32 +89,38 @@ function changeOrder() {
                     loop: false,
                     autoplay: true,
                     easing: 'easeInOutQuad',
-                    color: function (word, word_i) {
+                    opacity: function (word, word_i) {
                         let new_order = poem_map[line_i].indexOf(`${side_i + 1}.${word_i + 1}`);
                         if (new_order < 0) {
-                            return "#fff"
+                            return 0
                         } else {
-                            return "#000"
+                            return 1
                         }
                     }
                 });
                 timeline.add({
                     translateY: 1.5 * line_i + side_i * 1.25 + 'em',
-                    duration: 300 * slow
+                    duration: 300 * slow,
+                    scale: 1.15
                 }).add({
                     translateY: 1.5 * line_i + (side_i * 1.25) + 'em',
                     translateX: function (word, word_i) {
                         return transX(word, word_i, line_i, side_i, baseX)
                     },
                     duration: 600 * slow,
-                    offset: 350 * slow
+                    offset: 350 * slow,
+                    scale: 1.15,
+                    complete: function(anime) {
+                        $('.word').removeClass('word_shadow');
+                    }
                 }).add({
                     translateY: 0,
                     translateX: function (word, word_i) {
                         return transX(word, word_i, line_i, side_i, baseX)
                     },
                     duration: 300 * slow,
-                    offset: 1000 * slow
+                    offset: 1000 * slow,
+                    scale: 1
                 });
                 line_i++
             }

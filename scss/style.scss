@@ -1,9 +1,7 @@
-$text-color: #222222;
-$border-color: #EAEAEA;
+$text-color: #222;
+$border-color: #aaa;
+$button-bg-color: #ddd;
 $bg-color: white;
-$link-color: white;
-
-// fonts 
 
 $primary-font: monospace;
 
@@ -30,11 +28,6 @@ body {
   background-color: $bg-color;
 }
 
-a {
-  color: $link-color;
-  text-decoration: none;
-}
-
 h1 {
   font: {
     size: 2.5rem;
@@ -42,6 +35,21 @@ h1 {
   line-height: 1.5;
   margin: 2rem 0 5rem 0;
   text-align: center;
+}
+
+button {
+  padding: 0.4em 0.8em;
+  border: 1px $border-color solid;
+  background-color: $bg-color;
+  font: {
+    family: $primary-font;
+    size: 0.99rem;
+  }
+  color: $border-color;
+
+  &:hover {
+    background-color: $button-bg-color;
+  }
 }
 
 /* -------------------------------- 
@@ -53,19 +61,6 @@ Main Components
 #player {
   text-align: center;
   margin: 2rem;
-}
-
-button {
-  border: 1px #aaa solid;
-  background: {
-    color:$bg-color
-  };
-  padding: 0.4em 0.8em;
-  font-family: $primary-font;
-
-  :hover {
-    background-color: #aaa;
-  }
 }
 
 #poem-container {
@@ -89,4 +84,9 @@ button {
 .word {
   display: inline-block;
   margin-right: 0.5em;
+  transition: text-shadow 3000ms linear;
+}
+
+.word_shadow {
+  text-shadow: 8px 8px 8px #999;
 }
