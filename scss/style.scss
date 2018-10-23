@@ -1,0 +1,92 @@
+$text-color: #222222;
+$border-color: #EAEAEA;
+$bg-color: white;
+$link-color: white;
+
+// fonts 
+
+$primary-font: monospace;
+
+/* -------------------------------- 
+
+Primary style
+
+-------------------------------- */
+
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font: {
+    size: 1.6rem;
+    family: $primary-font; // variables inside partials > _variables.scss
+  }
+  color: $text-color;
+  background-color: $bg-color;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+}
+
+h1 {
+  font: {
+    size: 2.5rem;
+  }
+  line-height: 1.5;
+  margin: 2rem 0 5rem 0;
+  text-align: center;
+}
+
+/* -------------------------------- 
+
+Main Components 
+
+-------------------------------- */
+
+#player {
+  text-align: center;
+  margin: 2rem;
+}
+
+button {
+  border: 1px #aaa solid;
+  background: {
+    color:$bg-color
+  };
+  padding: 0.4em 0.8em;
+  font-family: $primary-font;
+
+  :hover {
+    background-color: #aaa;
+  }
+}
+
+#poem-container {
+  width: 150ch;
+  margin: auto;
+  //border: 1px #aaa solid;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: felx-start;
+}
+
+.line {
+  margin: 1em;
+
+  display: flex;
+  align-items: felx-start;
+
+}
+
+.word {
+  display: inline-block;
+  margin-right: 0.5em;
+}
