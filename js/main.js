@@ -51,10 +51,12 @@ const poem_map = [
     ["1.1", "2.1", "2.2", "1.2", "2.3", "1.3", "1.4"],
     ["1.2", "2.1", "1.1"],
     ["1.2", "1.1", "2.2", "2.1"],
-    ["2.2", "2.1", "2.3", "1.3", "1.4", "1.1"],
+    ["2.1", "2.2", "2.3", "1.3", "1.4", "1.1"],
     ["1.2", "2.2", "1.6", "1.8", "1.7", "1.9", "2.1", "1.1", "2.3", "1.3", "1.4"],
     ["1.8", "1.3", "1.2", "2.4", "2.5", "2.6", "1.1", "1.5", "1.6", "2.3", "1.4", "2.2", "2.1", "1.9"]
 ];
+
+let STATE = true;
 
 jQuery(document).ready(function ($) {
     let side = $("#left-side");
@@ -73,13 +75,23 @@ jQuery(document).ready(function ($) {
 
 });
 
+function magic() {
+    if (STATE) {
+        changeOrder();
+        STATE = false
+    } else {
+        changeOrderBack();
+        STATE = true
+    }
+}
+
+const slow = 200;
+
 function changeOrder() {
     $('.word').addClass('word_shadow');
-
     let side = $('#left-side');
-    let baseX = 50;
 
-    const slow = 10;
+    let baseX = 50;
 
     for (let side_i = 0; side_i < 2; side_i++) {
         let line_i = 0;
@@ -88,7 +100,22 @@ function changeOrder() {
                     targets: this.children,
                     loop: false,
                     autoplay: true,
-                    easing: 'easeInOutQuad',
+                    easing: 'easeInOutQuad'
+                });
+                timeline.add({
+                    scale: 1.2,
+                    duration: 6 * slow,
+                }).add({
+                    translateY: 1.1 * line_i + side_i * 1.75 + 'em',
+                    scale: 1.2,
+                    duration: 6 * slow,
+                    offset: 7 * slow
+                }).add({
+                    translateY: 1.1 * line_i + side_i * 1.75 + 'em',
+                    translateX: function (word, word_i) {
+                        return transX(word, word_i, line_i, side_i, baseX)
+                    },
+                    scale: 1.2,
                     opacity: function (word, word_i) {
                         let new_order = poem_map[line_i].indexOf(`${side_i + 1}.${word_i + 1}`);
                         if (new_order < 0) {
@@ -96,21 +123,18 @@ function changeOrder() {
                         } else {
                             return 1
                         }
-                    }
-                });
-                timeline.add({
-                    translateY: 1.5 * line_i + side_i * 1.25 + 'em',
-                    duration: 300 * slow,
-                    scale: 1.15
+                    },
+                    duration: 6 * slow,
+                    offset: 14 * slow
                 }).add({
-                    translateY: 1.5 * line_i + (side_i * 1.25) + 'em',
+                    translateY: 0,
                     translateX: function (word, word_i) {
                         return transX(word, word_i, line_i, side_i, baseX)
                     },
-                    duration: 600 * slow,
-                    offset: 350 * slow,
-                    scale: 1.15,
-                    complete: function(anime) {
+                    scale: 1.2,
+                    duration: 6 * slow,
+                    offset: 21 * slow,
+                    complete: function (anime) {
                         $('.word').removeClass('word_shadow');
                     }
                 }).add({
@@ -118,22 +142,82 @@ function changeOrder() {
                     translateX: function (word, word_i) {
                         return transX(word, word_i, line_i, side_i, baseX)
                     },
-                    duration: 300 * slow,
-                    offset: 1000 * slow,
-                    scale: 1
+                    scale: 1,
+                    duration: 6 * slow,
+                    offset: 28 * slow,
                 });
                 line_i++
             }
         );
         side = $('#right-side');
-        baseX = -61
+        baseX = -64
+    }
+}
+
+function changeOrderBack() {
+    $('.word').addClass('word_shadow');
+
+    let side = $('#left-side');
+    let baseX = 50;
+
+    for (let side_i = 0; side_i < 2; side_i++) {
+        let line_i = 0;
+        side.find('.line').each(function () {
+                let timeline = anime.timeline({
+                    targets: this.children,
+                    loop: false,
+                    autoplay: true,
+                    easing: 'easeInOutQuad'
+                });
+
+                timeline.add({
+                    translateX: function (word, word_i) {
+                        return transX(word, word_i, line_i, side_i, baseX)
+                    },
+                    scale: 1.2,
+                    duration: 6 * slow
+                }).add({
+                    translateY: 1.1 * line_i + side_i * 1.75 + 'em',
+                    translateX: function (word, word_i) {
+                        return transX(word, word_i, line_i, side_i, baseX)
+                    },
+                    scale: 1.2,
+                    duration: 6 * slow,
+                    offset: 7 * slow
+                }).add({
+                    translateY: 1.1 * line_i + side_i * 1.75 + 'em',
+                    translateX: 0,
+                    scale: 1.2,
+                    opacity: 1,
+                    duration: 6 * slow,
+                    offset: 14 * slow
+                }).add({
+                    translateY: 0,
+                    translateX: 0,
+                    scale: 1.2,
+                    duration: 6 * slow,
+                    offset: 21 * slow,
+                    complete: function (anime) {
+                        $('.word').removeClass('word_shadow');
+                    }
+                }).add({
+                    translateY: 0,
+                    translateX: 0,
+                    scale: 1,
+                    duration: 6 * slow,
+                    offset: 28 * slow,
+                });
+                line_i++
+            }
+        );
+        side = $('#right-side');
+        baseX = -64
     }
 }
 
 function transX(word, word_i, line_i, side_i, baseX) {
     console.log(`side: ${side_i + 1}, line: ${line_i + 1}, word: ${word_i + 1}, "${$(word).html()}"`);
-    const wordGap1 = 1;
-    const wordGap2 = 1;
+    const wordGap = 1;
 
     if (poem_map[line_i]) {
         let sum = 0;
@@ -141,15 +225,13 @@ function transX(word, word_i, line_i, side_i, baseX) {
         for (let prev_i = 0; prev_i < new_order; prev_i++) {
             let prev_word = poem_map[line_i][prev_i].split(".");
             let line_words = poems[Number(prev_word[0]) - 1][line_i].split(" ");
-            sum += line_words[prev_word[1] - 1].length + wordGap1
+            sum += line_words[prev_word[1] - 1].length + wordGap
         }
         let line_words = poems[side_i][line_i].split(" ");
         let prev_chars = 0;
         for (let prev_i = 0; prev_i < word_i; prev_i++) {
             prev_chars += line_words[prev_i].length;
-            //if ([",", ".", "!", "?", "..."].indexOf(line_words[prev_i]) !== -1) {
-                prev_chars += wordGap2
-            //}
+            prev_chars += wordGap
         }
         console.log(prev_chars);
 
