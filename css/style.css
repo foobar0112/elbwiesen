@@ -27,13 +27,19 @@ h1 {
 
 button {
   padding: 0.4em 0.8em;
-  border: 1px #aaa solid;
+  border: 1px #bbb solid;
   background-color: white;
   font-family: monospace;
   font-size: 0.99rem;
-  color: #aaa;
+  color: #bbb;
 }
 button:hover {
+  background-color: #eee;
+}
+button:focus {
+  outline: none;
+}
+button:active {
   background-color: #ddd;
 }
 
@@ -64,7 +70,7 @@ Main Components
 .word {
   display: inline-block;
   margin-right: 1ch;
-  transition: text-shadow 3000ms linear;
+  transition: text-shadow 1200ms ease-in-out;
 }
 
 .word_shadow {

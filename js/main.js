@@ -30,7 +30,7 @@ const poems = [
         "die möglichkeit , kurz aufzuhören .",
         "wir wollen uns",
         "bewegen .",
-        "zwischen bäumen",
+        "zwischen den bäumen",
         "laufen den stunden",
         "minuten wie wasser",
         "davon und ziehen dich voran ."
@@ -78,14 +78,16 @@ jQuery(document).ready(function ($) {
 function magic() {
     if (STATE) {
         changeOrder();
+        $('.play').css('opacity', 0);
         STATE = false
     } else {
         changeOrderBack();
+        $('.play').css('opacity', 0);
         STATE = true
     }
 }
 
-const slow = 200;
+const slow = 250;
 
 function changeOrder() {
     $('.word').addClass('word_shadow');
@@ -102,6 +104,7 @@ function changeOrder() {
                     autoplay: true,
                     easing: 'easeInOutQuad'
                 });
+
                 timeline.add({
                     scale: 1.2,
                     duration: 6 * slow,
@@ -136,6 +139,7 @@ function changeOrder() {
                     offset: 21 * slow,
                     complete: function (anime) {
                         $('.word').removeClass('word_shadow');
+                        $('.play').css('opacity', 1);
                     }
                 }).add({
                     translateY: 0,
@@ -199,6 +203,7 @@ function changeOrderBack() {
                     offset: 21 * slow,
                     complete: function (anime) {
                         $('.word').removeClass('word_shadow');
+                        $('.play').css('opacity', 1);
                     }
                 }).add({
                     translateY: 0,

@@ -1,9 +1,10 @@
 $text-color: #222;
-$border-color: #aaa;
-$button-bg-color: #ddd;
+$border-color: #bbb;
+$button-bg-color: #eee;
+$button-bg-color-darker: #ddd;
 $bg-color: white;
 
-$primary-font: monospace;
+$primary-font: monospace; //TODO: select font
 
 /* -------------------------------- 
 
@@ -22,7 +23,7 @@ html {
 body {
   font: {
     size: 1.6rem;
-    family: $primary-font; // variables inside partials > _variables.scss
+    family: $primary-font;
   }
   color: $text-color;
   background-color: $bg-color;
@@ -50,6 +51,14 @@ button {
   &:hover {
     background-color: $button-bg-color;
   }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background-color: $button-bg-color-darker;
+  }
 }
 
 /* -------------------------------- 
@@ -66,7 +75,6 @@ Main Components
 #poem-container {
   width: 150ch;
   margin: auto;
-  //border: 1px #aaa solid;
 
   display: flex;
   justify-content: space-between;
@@ -84,7 +92,7 @@ Main Components
 .word {
   display: inline-block;
   margin-right: 1ch;
-  transition: text-shadow 3000ms linear;
+  transition: text-shadow 1200ms ease-in-out;
 }
 
 .word_shadow {
