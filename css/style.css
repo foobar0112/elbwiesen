@@ -53,6 +53,10 @@ Main Components
   margin: 2rem;
 }
 
+.play {
+  transition: opacity, 1000ms;
+}
+
 #poem-container {
   width: 150ch;
   margin: auto;

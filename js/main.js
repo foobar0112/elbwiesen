@@ -1,8 +1,8 @@
 const poems = [
     [
-        "jeden tag ,",
-        "johannes , sitzt du",
-        "an der elbe . und zugleich",
+        "jeden tag , .",
+        "johannes , sitzt du ,",
+        "an der elbe . und zugleich ,",
         "fließen den",
         "sommer hinab",
 
@@ -11,59 +11,59 @@ const poems = [
         "rauschen der",
         "laufenden stunden",
         "willst du .",
-        "und dass ruhe kommt",
+        "und dass ruhe kommt ,",
         "vor jedes",
         "auf jedes",
 
         "warten . stört das",
-        "licht darauf im moment ? alles geht weiter .",
-        "und du wartest auf die vögel , johannes ..."
+        "licht darauf im moment ? alles geht weiter . , ,",
+        "und du wartest auf die vögel , johannes ... ,"
     ],
     [
         "auch ich tue nichts und",
         "ver *stumm",
         "den sommer über .",
         "unter dem himmel",
-        "und den vögeln singen den",
+        "und den vögeln singen den .",
 
         "wichtigen dinge *n andere",
         "ein schöneres lied !",
         "beim atmen und",
-        "träumen gibt es nicht",
+        "träumen gibt es nicht .",
         "die möglichkeit , kurz aufzuhören .",
-        "wir wollen uns",
+        "wir wollen uns .",
         "bewegen .",
         "zwischen den bäumen",
 
         "laufen den stunden",
-        "minuten wie wasser",
+        "minuten wie wasser ... , ,",
         "davon und ziehen dich voran ."
     ]
 ];
 
 const poem_map = [
-    ["1.1", "1.2", "2.3", "2.2", "2.4", "1.3", "2.5", "2.1"],
-    ["1.4", "1.1", "1.2", "2.1", "*1.3", "2.2"],
-    ["2.1", "2.2", "1.1", "1.2", "1.3", "1.4", "1.6", "2.3", "1.5"],
-    ["2.1", "2.2", "1.1", "*1.2", "2.3"],
-    ["2.1", "2.4", "*2.5", "2.3", "2.2", "1.1", "1.2"],
+    ["1.1", "1.2", "2.3", "2.2", "2.4", "1.4", "2.5", "2.1"],
+    ["1.4", "1.5", "1.1", "1.2", "2.1", "1.3.*", "2.2"],
+    ["2.1", "2.2", "1.1", "1.2", "1.3", "1.7", "1.6", "2.3", "1.5"],
+    ["2.1", "2.2", "1.1", "1.2.*", "2.3"],
+    ["2.1", "2.4", "2.5.*", "2.3", "2.6", "2.2", "1.1", "1.2"],
 
-    ["1.4", "1.1", "2.1", "1.2", "1.5", "2.4", "*2.3", "2.2", "1.3"],
+    ["1.4", "1.1", "2.1", "1.2", "1.5", "2.4", "2.3.*", "2.2", "1.3"],
     ["2.1", "2.2", "2.3", "1.2", "1.1"],
     ["2.1", "1.1", "2.3", "2.2", "1.2"],
-    ["1.1", "1.2", "2.2", "2.3", "2.4", "2.1"],
+    ["1.1", "1.2", "2.2", "2.3", "2.4", "2.5", "2.1"],
     ["1.1", "1.2", "1.3", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6"],
-    ["1.1", "2.1", "2.2", "1.2", "2.3", "1.3", "1.4"],
+    ["1.1", "2.1", "2.2", "1.5", "1.2", "2.3", "1.3", "1.4", "2.4"],
     ["1.2", "2.1", "1.1"],
     ["1.2", "1.1", "2.3", "2.1", "2.2"],
 
-    ["2.1", "*2.2", "2.3", "1.3", "1.4", "1.1"],
-    ["1.2", "2.2", "1.6", "1.8", "1.7", "1.9", "2.1", "1.1", "2.3", "1.3", "1.4"],
-    ["1.8", "1.3", "1.2", "2.4", "2.5", "2.6", "1.1", "1.5", "1.6", "2.3", "1.4", "2.2", "2.1", "1.9"]
+    ["2.1", "2.2.*", "2.3", "1.3", "1.4", "1.1"],
+    ["1.2", "1.10", "2.2", "1.6", "1.8", "1.7.*", "1.9", "2.1", "1.11", "1.1", "2.5", "2.3", "2.4", "1.3", "1.4", "2.6"],
+    ["1.8", "1.10", "1.3", "1.2", "2.4", "2.5", "2.6", "1.1", "1.5", "1.6", "2.3", "1.4", "2.2", "2.1", "1.9"]
 ];
 
-let STATE = true;
-const INTERPUCTATION = ['.', ',', '...', '?', '!'];
+let IS_SPLIT = true;
+const PUNCTUATION = ['.', ',', '...', '?', '!'];
 
 jQuery(document).ready(function ($) {
     let side = $("#left-side");
@@ -77,7 +77,7 @@ jQuery(document).ready(function ($) {
                     if (word.charAt(0) === '*') {
                         word = word.substr(1);
                         cl += " word--no-gap"
-                    } else if (INTERPUCTATION.includes(word)) {
+                    } else if (PUNCTUATION.includes(word)) {
                         cl += " word--no-gap"
                     }
                     side.find(".line:last-child").append(`<div class="${cl}">${word}</div>`)
@@ -90,18 +90,17 @@ jQuery(document).ready(function ($) {
 });
 
 function magic() {
-    if (STATE) {
+    $('.play').css('opacity', 0).prop("disabled",true);
+    if (IS_SPLIT) {
         changeOrder();
-        $('.play').css('opacity', 0);
-        STATE = false
+        IS_SPLIT = false
     } else {
         changeOrderBack();
-        $('.play').css('opacity', 0);
-        STATE = true
+        IS_SPLIT = true
     }
 }
 
-const slow = 400;
+const slow = 350;
 
 function changeOrder() {
     $('.word').addClass('word_shadow');
@@ -139,7 +138,7 @@ function changeOrder() {
                     opacity: function (word, word_i) {
                         let new_order = poem_map[line_i].indexOf(`${side_i + 1}.${word_i + 1}`);
                         if (new_order === -1) {
-                            new_order = poem_map[line_i].indexOf(`*${side_i + 1}.${word_i + 1}`);
+                            new_order = poem_map[line_i].indexOf(`${side_i + 1}.${word_i + 1}.*`);
                         }
                         if (new_order < 0) {
                             return 0
@@ -159,7 +158,7 @@ function changeOrder() {
                     offset: 21 * slow,
                     complete: function (anime) {
                         $('.word').removeClass('word_shadow');
-                        $('.play').css('opacity', 1);
+                        $('.play').text('<< >>').css('opacity', 1).prop("disabled",false);
                     }
                 }).add({
                     translateY: 0,
@@ -226,7 +225,7 @@ function changeOrderBack() {
                     offset: 21 * slow,
                     complete: function (anime) {
                         $('.word').removeClass('word_shadow');
-                        $('.play').css('opacity', 1);
+                        $('.play').text('>> <<').css('opacity', 1).prop("disabled",false);
                     }
                 }).add({
                     translateY: 0,
@@ -252,11 +251,11 @@ function transX(word, word_i, line_i, side_i, baseX) {
         let new_order = poem_map[line_i].indexOf(`${side_i + 1}.${word_i + 1}`);
 
         if (new_order === -1) {
-            new_order = poem_map[line_i].indexOf(`*${side_i + 1}.${word_i + 1}`);
+            new_order = poem_map[line_i].indexOf(`${side_i + 1}.${word_i + 1}.*`);
             sum = -1
         }
 
-        if (INTERPUCTATION.includes($(word).html())) {
+        if (PUNCTUATION.includes($(word).html())) {
             sum -= 1
         }
 
@@ -264,12 +263,11 @@ function transX(word, word_i, line_i, side_i, baseX) {
             let prev_word = poem_map[line_i][prev_i].split(".");
             let no_gap = 0;
             let inter = 0;
-            if (prev_word[0].charAt(0) === '*') {
-                prev_word[0] = prev_word[0].substr(1);
+            if (prev_word[2] === '*') {
                 no_gap = 1
             }
             let line_words = poems[Number(prev_word[0]) - 1][line_i].split(" ");
-            if(INTERPUCTATION.includes(line_words[prev_word[1] - 1])) {
+            if(PUNCTUATION.includes(line_words[prev_word[1] - 1])) {
                 inter = 1
             }
             sum += wordlength(line_words[prev_word[1] - 1]) + wordGap - no_gap - inter
