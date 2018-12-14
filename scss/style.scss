@@ -61,9 +61,9 @@ button {
   }
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-Main Components 
+Main Components
 
 -------------------------------- */
 
@@ -92,7 +92,15 @@ Main Components
 .word {
   display: inline-block;
   margin-right: 1ch;
-  transition: text-shadow 1200ms ease-in-out;
+  transition: text-shadow 1200ms ease-in-out, margin 2000ms ease-in;
+
+  &--no-gap {
+    margin-left: -1ch;
+  }
+
+  &--no-no-gap {
+    margin-left: 0ch;
+  }
 }
 
 .word_shadow {
