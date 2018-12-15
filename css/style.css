@@ -26,7 +26,7 @@ Primary style
 }
 
 html {
-  font-size: 90%;
+  font-size: 95%;
 }
 
 body {
@@ -39,9 +39,9 @@ body {
 }
 
 h1 {
-  font-size: 2.3rem;
+  font-size: 2rem;
   line-height: 1.5;
-  margin: 2em 0 5rem 0;
+  margin: 4rem 0;
   text-align: center;
   font-weight: 500;
 }
@@ -67,7 +67,7 @@ button:active {
 footer {
   position: absolute;
   bottom: 0;
-  padding: 0 3em 3em 0;
+  padding: 0 4em 4em 0;
   width: 100%;
   text-align: right;
   font-size: 0.85em;
@@ -82,7 +82,7 @@ Main Components
 -------------------------------- */
 #player {
   text-align: center;
-  margin: 2rem;
+  margin: 1em;
 }
 
 .play {
