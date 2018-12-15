@@ -1,10 +1,32 @@
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url('../fonts/SourceCodePro-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url('../fonts/SourceCodePro-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url('../fonts/SourceCodePro-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+
 $text-color: #222;
 $border-color: #bbb;
 $button-bg-color: #eee;
 $button-bg-color-darker: #ddd;
 $bg-color: white;
 
-$primary-font: monospace; //TODO: select font
+$primary-font: 'Source Code Pro', monospace;
 
 /* -------------------------------- 
 
@@ -17,25 +39,28 @@ Primary style
 }
 
 html {
-  font-size: 70%;
+  font-size: 90%;
 }
 
 body {
   font: {
-    size: 1.6rem;
+    size: 1rem;
     family: $primary-font;
+    weight: 400;
   }
   color: $text-color;
   background-color: $bg-color;
+  overflow: hidden;
 }
 
 h1 {
   font: {
-    size: 2.5rem;
+    size: 2.3rem;
   }
   line-height: 1.5;
-  margin: 2rem 0 5rem 0;
+  margin: 2em 0 5rem 0;
   text-align: center;
+  font-weight: 500;
 }
 
 button {
@@ -44,7 +69,7 @@ button {
   background-color: $bg-color;
   font: {
     family: $primary-font;
-    size: 0.99rem;
+    size: 0.8rem;
   }
   color: $border-color;
 
@@ -59,6 +84,17 @@ button {
   &:active {
     background-color: $button-bg-color-darker;
   }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  padding: 0 3em 3em 0;
+  width: 100%;
+  text-align: right;
+  font-size: 0.85em;
+  font-weight: 300;
+  color: lighten($text-color, 20);
 }
 
 /* --------------------------------
@@ -78,11 +114,12 @@ Main Components
 
 #poem-container {
   position: absolute;
-  top: 25%;
+  top: 50%;
   left: 50%;
 
   width: 150ch;
   margin-left: -75ch;
+  margin-top: -16em;
 
   display: flex;
   justify-content: space-between;

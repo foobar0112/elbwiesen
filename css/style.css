@@ -1,3 +1,21 @@
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("../fonts/SourceCodePro-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("../fonts/SourceCodePro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("../fonts/SourceCodePro-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
 /* -------------------------------- 
 
 Primary style
@@ -8,29 +26,32 @@ Primary style
 }
 
 html {
-  font-size: 70%;
+  font-size: 90%;
 }
 
 body {
-  font-size: 1.6rem;
-  font-family: monospace;
+  font-size: 1rem;
+  font-family: "Source Code Pro", monospace;
+  font-weight: 400;
   color: #222;
   background-color: white;
+  overflow: hidden;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   line-height: 1.5;
-  margin: 2rem 0 5rem 0;
+  margin: 2em 0 5rem 0;
   text-align: center;
+  font-weight: 500;
 }
 
 button {
   padding: 0.4em 0.8em;
   border: 1px #bbb solid;
   background-color: white;
-  font-family: monospace;
-  font-size: 0.99rem;
+  font-family: "Source Code Pro", monospace;
+  font-size: 0.8rem;
   color: #bbb;
 }
 button:hover {
@@ -41,6 +62,17 @@ button:focus {
 }
 button:active {
   background-color: #ddd;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  padding: 0 3em 3em 0;
+  width: 100%;
+  text-align: right;
+  font-size: 0.85em;
+  font-weight: 300;
+  color: #555555;
 }
 
 /* --------------------------------
@@ -59,10 +91,11 @@ Main Components
 
 #poem-container {
   position: absolute;
-  top: 25%;
+  top: 50%;
   left: 50%;
   width: 150ch;
   margin-left: -75ch;
+  margin-top: -16em;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
