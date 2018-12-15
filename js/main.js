@@ -1,42 +1,44 @@
 const poems = [
     [
-        "jeden tag , .",
-        "johannes , sitzt du ,",
-        "an der elbe . und zugleich ,",
+        "jeden tag , +.",
+        "johannes , sitzt du +,",
+        "an der elbe . und zugleich +,",
         "fließen den",
-        "sommer hinab",
 
+        "sommer hinab",
         "die ereignisse . entfliehen und",
         "tanzen zum",
         "rauschen der",
+
         "laufenden stunden",
         "willst du .",
-        "und dass ruhe kommt ,",
+        "und dass ruhe kommt +,",
         "vor jedes",
-        "auf jedes",
 
+        "auf jedes",
         "warten . stört das",
-        "licht darauf im moment ? alles geht weiter . , ,",
-        "und du wartest auf die vögel , johannes ... ,"
+        "licht darauf im moment ? alles geht weiter . +, +,",
+        "und du wartest auf die vögel , johannes ... +,"
     ],
     [
         "auch ich tue nichts und",
         "ver *stumm",
         "den sommer über .",
         "unter dem himmel",
-        "und den vögeln singen den .",
 
+        "und den vögeln singen den +.",
         "wichtigen dinge *n andere",
         "ein schöneres lied !",
         "beim atmen und",
-        "träumen gibt es nicht .",
-        "die möglichkeit , kurz aufzuhören .",
-        "wir wollen uns .",
-        "bewegen .",
-        "zwischen den bäumen",
 
+        "träumen gibt es nicht +.",
+        "die möglichkeit , kurz aufzuhören .",
+        "wir wollen uns +.",
+        "bewegen .",
+
+        "zwischen den bäumen",
         "laufen den stunden",
-        "minuten wie wasser ... , ,",
+        "minuten wie wasser +... +, +,",
         "davon und ziehen dich voran ."
     ]
 ];
@@ -46,24 +48,25 @@ const poem_map = [
     ["1.4", "1.5", "1.1", "1.2", "2.1", "1.3.*", "2.2"],
     ["2.1", "2.2", "1.1", "1.2", "1.3", "1.7", "1.6", "2.3", "1.5"],
     ["2.1", "2.2", "1.1", "1.2.*", "2.3"],
-    ["2.1", "2.4", "2.5.*", "2.3", "2.6", "2.2", "1.1", "1.2"],
 
+    ["2.1", "2.4", "2.5.*", "2.3", "2.6", "2.2", "1.1", "1.2"],
     ["1.4", "1.1", "2.1", "1.2", "1.5", "2.4", "2.3.*", "2.2", "1.3"],
     ["2.1", "2.2", "2.3", "1.2", "1.1"],
     ["2.1", "1.1", "2.3", "2.2", "1.2"],
+
     ["1.1", "1.2", "2.2", "2.3", "2.4", "2.5", "2.1"],
     ["1.1", "1.2", "1.3", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6"],
     ["1.1", "2.1", "2.2", "1.5", "1.2", "2.3", "1.3", "1.4", "2.4"],
     ["1.2", "2.1", "1.1"],
-    ["1.2", "1.1", "2.3", "2.1", "2.2"],
 
+    ["1.2", "1.1", "2.3.*", "2.1", "2.2"],
     ["2.1", "2.2.*", "2.3", "1.3", "1.4", "1.1"],
     ["1.2", "1.10", "2.2", "1.6", "1.8", "1.7.*", "1.9", "2.1", "1.11", "1.1", "2.5", "2.3", "2.4", "1.3", "1.4", "2.6"],
     ["1.8", "1.10", "1.3", "1.2", "2.4", "2.5", "2.6", "1.1", "1.5", "1.6", "2.3", "1.4", "2.2", "2.1", "1.9"]
 ];
 
 let IS_SPLIT = true;
-const PUNCTUATION = ['.', ',', '...', '?', '!'];
+const PUNCTUATION = ['.', ',', '...', '?', '!', '+.', '+,', '+...'];
 
 jQuery(document).ready(function ($) {
     let side = $("#left-side");
@@ -77,6 +80,9 @@ jQuery(document).ready(function ($) {
                     if (word.charAt(0) === '*') {
                         word = word.substr(1);
                         cl += " word--no-gap"
+                    } else if (word.charAt(0) === '+') {
+                        word = word.substr(1);
+                        cl += " word--invisible"
                     } else if (PUNCTUATION.includes(word)) {
                         cl += " word--no-gap"
                     }
@@ -90,7 +96,7 @@ jQuery(document).ready(function ($) {
 });
 
 function magic() {
-    $('.play').css('opacity', 0).prop("disabled",true);
+    $('.play').css('opacity', 0).prop("disabled", true);
     if (IS_SPLIT) {
         changeOrder();
         IS_SPLIT = false
@@ -158,7 +164,7 @@ function changeOrder() {
                     offset: 21 * slow,
                     complete: function (anime) {
                         $('.word').removeClass('word_shadow');
-                        $('.play').text('<< >>').css('opacity', 1).prop("disabled",false);
+                        $('.play').text('<< >>').css('opacity', 1).prop("disabled", false);
                     }
                 }).add({
                     translateY: 0,
@@ -214,7 +220,13 @@ function changeOrderBack() {
                     translateY: 1.1 * line_i + side_i * 1.75 + 'em',
                     translateX: 0,
                     scale: 1.2,
-                    opacity: 1,
+                    opacity: function (word, word_i) {
+                        if($(word).hasClass('word--invisible')) {
+                            return 0
+                        } else {
+                            return 1
+                        }
+                    },
                     duration: 6 * slow,
                     offset: 14 * slow
                 }).add({
@@ -225,7 +237,7 @@ function changeOrderBack() {
                     offset: 21 * slow,
                     complete: function (anime) {
                         $('.word').removeClass('word_shadow');
-                        $('.play').text('>> <<').css('opacity', 1).prop("disabled",false);
+                        $('.play').text('>> <<').css('opacity', 1).prop("disabled", false);
                     }
                 }).add({
                     translateY: 0,
@@ -263,11 +275,11 @@ function transX(word, word_i, line_i, side_i, baseX) {
             let prev_word = poem_map[line_i][prev_i].split(".");
             let no_gap = 0;
             let inter = 0;
-            if (prev_word[2] === '*') {
+            if (prev_word[2] === '*' || prev_word[2] === '+' ) {
                 no_gap = 1
             }
             let line_words = poems[Number(prev_word[0]) - 1][line_i].split(" ");
-            if(PUNCTUATION.includes(line_words[prev_word[1] - 1])) {
+            if (PUNCTUATION.includes(line_words[prev_word[1] - 1])) {
                 inter = 1
             }
             sum += wordlength(line_words[prev_word[1] - 1]) + wordGap - no_gap - inter
@@ -288,5 +300,5 @@ function transX(word, word_i, line_i, side_i, baseX) {
 }
 
 function wordlength(word) {
-    return word.length - (word.match(/\*/g) || []).length;
+    return word.length - (word.match(/([*+])/g) || []).length;
 }

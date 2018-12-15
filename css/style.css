@@ -82,6 +82,9 @@ Main Components
 .word--no-no-gap {
   margin-left: 0ch;
 }
+.word--invisible {
+  opacity: 0;
+}
 
 .word_shadow {
   text-shadow: 8px 8px 8px #999;

@@ -105,6 +105,10 @@ Main Components
   &--no-no-gap {
     margin-left: 0ch;
   }
+
+  &--invisible {
+    opacity: 0;
+  }
 }
 
 .word_shadow {
