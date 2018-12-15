@@ -128,7 +128,7 @@ function changeOrder() {
                     scale: 1.2,
                     duration: 6 * slow,
                 }).add({
-                    translateY: 1.1 * line_i + side_i * 1.75 + 'em',
+                    translateY: 1.1 * (line_i - 7) + side_i * 1.75 + 'em',
                     scale: 1.2,
                     duration: 6 * slow,
                     offset: 7 * slow,
@@ -136,7 +136,7 @@ function changeOrder() {
                         $('.word--no-gap').addClass('word--no-no-gap')
                     }
                 }).add({
-                    translateY: 1.1 * line_i + side_i * 1.75 + 'em',
+                    translateY: 1.1 * (line_i - 7) + side_i * 1.75 + 'em',
                     translateX: function (word, word_i) {
                         return transX(word, word_i, line_i, side_i, baseX)
                     },
@@ -206,7 +206,7 @@ function changeOrderBack() {
                     scale: 1.2,
                     duration: 6 * slow
                 }).add({
-                    translateY: 1.1 * line_i + side_i * 1.75 + 'em',
+                    translateY: 1.1 * (line_i - 7) + side_i * 1.75 + 'em',
                     translateX: function (word, word_i) {
                         return transX(word, word_i, line_i, side_i, baseX)
                     },
@@ -217,7 +217,7 @@ function changeOrderBack() {
                         $('.word--no-gap').removeClass('word--no-no-gap')
                     }
                 }).add({
-                    translateY: 1.1 * line_i + side_i * 1.75 + 'em',
+                    translateY: 1.1 * (line_i - 7) + side_i * 1.75 + 'em',
                     translateX: 0,
                     scale: 1.2,
                     opacity: function (word, word_i) {

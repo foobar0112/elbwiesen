@@ -77,19 +77,23 @@ Main Components
 }
 
 #poem-container {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+
   width: 150ch;
-  margin: auto;
+  margin-left: -75ch;
 
   display: flex;
   justify-content: space-between;
-  align-items: felx-start;
+  align-items: flex-start;
 }
 
 .line {
   margin: 1em 0;
 
   display: flex;
-  align-items: felx-start;
+  align-items: flex-start;
 
 }
 
@@ -103,7 +107,7 @@ Main Components
   }
 
   &--no-no-gap {
-    margin-left: 0ch;
+    margin-left: 0;
   }
 
   &--invisible {
