@@ -96,7 +96,8 @@ jQuery(document).ready(function ($) {
 });
 
 function magic() {
-    $('.play').css('opacity', 0).prop("disabled", true);
+    $('.play').css('opacity', 0).css('cursor', 'none').prop("disabled", true);
+    $('body').css('cursor', 'none');
     if (IS_SPLIT) {
         changeOrder();
         IS_SPLIT = false
@@ -164,7 +165,8 @@ function changeOrder() {
                     offset: 21 * slow,
                     complete: function (anime) {
                         $('.word').removeClass('word_shadow');
-                        $('.play').text('<< >>').css('opacity', 1).prop("disabled", false);
+                        $('.play').text('<< >>').css('opacity', 1).css('cursor', 'pointer').prop("disabled", false);
+                        $('body').css('cursor', 'auto');
                     }
                 }).add({
                     translateY: 0,
@@ -221,7 +223,7 @@ function changeOrderBack() {
                     translateX: 0,
                     scale: 1.2,
                     opacity: function (word, word_i) {
-                        if($(word).hasClass('word--invisible')) {
+                        if ($(word).hasClass('word--invisible')) {
                             return 0
                         } else {
                             return 1
@@ -237,7 +239,8 @@ function changeOrderBack() {
                     offset: 21 * slow,
                     complete: function (anime) {
                         $('.word').removeClass('word_shadow');
-                        $('.play').text('>> <<').css('opacity', 1).prop("disabled", false);
+                        $('.play').text('>> <<').css('opacity', 1).css('cursor', 'pointer').prop("disabled", false);
+                        $('body').css('cursor', 'auto');
                     }
                 }).add({
                     translateY: 0,
@@ -275,7 +278,7 @@ function transX(word, word_i, line_i, side_i, baseX) {
             let prev_word = poem_map[line_i][prev_i].split(".");
             let no_gap = 0;
             let inter = 0;
-            if (prev_word[2] === '*' || prev_word[2] === '+' ) {
+            if (prev_word[2] === '*' || prev_word[2] === '+') {
                 no_gap = 1
             }
             let line_words = poems[Number(prev_word[0]) - 1][line_i].split(" ");
