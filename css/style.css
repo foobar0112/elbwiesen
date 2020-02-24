@@ -3,16 +3,15 @@
 Primary style
 
 -------------------------------- */
-*, *::after, *::before {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
-html {
-  font-size: 95%;
-}
-
+html,
 body {
-  font-size: 1rem;
+  margin: 0;
   font-family: "Monospace", monospace;
   font-weight: 400;
   color: #222;
@@ -37,25 +36,17 @@ button {
   font-size: 0.8rem;
   color: #bbb;
 }
+
 button:hover {
   background-color: #eee;
 }
+
 button:focus {
   outline: none;
 }
+
 button:active {
   background-color: #ddd;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  padding: 0 4em 4em 0;
-  width: 100%;
-  text-align: right;
-  font-size: 0.85em;
-  font-weight: 300;
-  color: #555555;
 }
 
 /* --------------------------------
@@ -72,16 +63,23 @@ Main Components
   transition: opacity, 1000ms;
 }
 
-#poem-container {
+#body-container {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 50%;
+  transform-origin: 0 0 0;
+}
+
+#main-container {
+  text-align: center;
+}
+
+#poem-container {
   width: 150ch;
-  margin-left: -75ch;
-  margin-top: -16em;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin: auto;
 }
 
 .line {
@@ -95,12 +93,15 @@ Main Components
   margin-right: 1ch;
   transition: text-shadow 1200ms ease-in-out, margin 2000ms ease-in;
 }
+
 .word--no-gap {
   margin-left: -1ch;
 }
+
 .word--no-no-gap {
   margin-left: 0;
 }
+
 .word--invisible {
   opacity: 0;
 }
@@ -108,5 +109,3 @@ Main Components
 .word_shadow {
   text-shadow: 8px 8px 8px #999;
 }
-
-/*# sourceMappingURL=style.css.map */
