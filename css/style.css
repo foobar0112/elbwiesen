@@ -3,6 +3,14 @@
 Primary style
 
 -------------------------------- */
+@font-face {
+  font-family: 'Hack';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('../../../css/font/Hack400.woff2') format('woff2');
+}
+
 *,
 *::after,
 *::before {
@@ -12,7 +20,7 @@ Primary style
 html,
 body {
   margin: 0;
-  font-family: "Monospace", monospace;
+  font-family: "Hack", monospace;
   font-weight: 400;
   color: #222;
   background-color: white;
@@ -32,7 +40,7 @@ button {
   border: 1px #bbb solid;
   background-color: white;
   cursor: pointer;
-  font-family: "Monospace", monospace;
+  font-family: "Hack", monospace;
   font-size: 0.8rem;
   color: #bbb;
 }
@@ -65,7 +73,7 @@ Main Components
 
 #body-container {
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 50%;
   transform-origin: 0 0 0;
 }

@@ -100,21 +100,15 @@ jQuery(document).ready(function ($) {
     let maxWidth = $('#poem-container').width()
     let maxHeight = bodycontainer.height()
 
-    console.log(maxWidth, maxHeight)
-
     let $window = $(window)
     let width = $window.width()
     let height = $window.height()
-
-    console.log(width, height)
 
 
     if (width < maxWidth || height < maxHeight) {
         console.log("scale")
         scale = Math.min(width / maxWidth, height / maxHeight)
     }
-
-    console.log(scale)
 
     bodycontainer.css({
         'transform': 'scale(' + scale + ')'
