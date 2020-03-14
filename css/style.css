@@ -22,8 +22,8 @@ body {
   margin: 0;
   font-family: "Hack", monospace;
   font-weight: 400;
-  color: #222;
-  background-color: white;
+  color: rgb(20, 20, 20);
+  background-color: rgb(254, 254, 254);
   overflow: hidden;
 }
 
@@ -37,25 +37,30 @@ h1 {
 
 button {
   padding: 0.4em 0.8em;
-  border: 1px #bbb solid;
-  background-color: white;
+  border: 1px solid rgb(20, 20, 20);
+  background-color: rgb(20, 20, 20);
   cursor: pointer;
   font-family: "Hack", monospace;
   font-size: 0.8rem;
-  color: #bbb;
+  color: rgb(254, 254, 254);
+  transition: none;
+  transition: visibility .5s ease-in-out, opacity .2s ease-in-out;
+  outline: none;
 }
 
 button:hover {
-  background-color: #eee;
+  background-color: rgb(254, 254, 254);
+  color: rgb(20, 20, 20);
+}
+
+button:active {
+  outline: none;
 }
 
 button:focus {
   outline: none;
 }
 
-button:active {
-  background-color: #ddd;
-}
 
 /* --------------------------------
 
@@ -65,10 +70,6 @@ Main Components
 #player {
   text-align: center;
   margin: 1em;
-}
-
-.play {
-  transition: opacity, 1000ms;
 }
 
 #body-container {
